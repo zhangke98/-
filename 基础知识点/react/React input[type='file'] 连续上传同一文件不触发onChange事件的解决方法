@@ -1,0 +1,3 @@
+React input[type='file'] 连续上传同一文件不触发onChange事件的解决方法
+在使用type类型为file的input来上传文件时，发现连续上传同一个文件，第二次以后就不会再触发onChange事件，原因是onChange事件触发的条件为其value发生变化，上传文件时，该input的value值为文件在磁盘中的位置。知道了触发条件以后，我们就可对症下药：改变value值即可。
+在input元素中添加onClick事件，点击时将其value置空即可。

@@ -1,0 +1,15 @@
+DOM事件分为三个阶段：
+
+捕获阶段
+目标阶段
+冒泡阶段
+
+捕获阶段：
+事件从window对象自顶向下向目标结点传递。
+捕获是自顶向下的，事件是从window对象，传递到document对象，然后是html标签（通过document.documentElement获取到html标签），再到body（通过document.body获取到body标签），再按照body结构一层一层向下传递，最后到达目标元素。
+
+目标阶段：
+事件到达目标元素后，目标元素对事件进行处理。
+
+冒泡阶段：
+事件从目标元素自底向上向window对象传递。

@@ -1,0 +1,17 @@
+const  c = true +'10'   = 'true10'
+两等如果类型不一样，会尝试进行类型转换
+三等 类型不同直接不等
+
+什么情况下用 == 或者 ===
+除了 == null 之外，其他的一律用 ===
+const obj = {x: 20};
+if (obj.x == null) {}
+相当于：
+if(obj.x === null || obj.x === undefined) {}
+这样不会太罗嗦
+
+!!完全等同于Boolean()
+比如!!0-->Boolean(0)
+!!NaN-->Boolean(NaN)
+对象、引用都是truly变量
+if语句里面判断的是truely变量和falsely变量，并不一定非得是true和false

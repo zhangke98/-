@@ -1,0 +1,16 @@
+text-align CSS属性定义行内内容（例如文字、图片）如何相对它的块父元素对齐。text-align 并不控制块元素自己的对齐，只控制它的行内内容的对齐。
+设置给块元素，设置给图片不生效，默认左对齐.
+如果块元素里面是p img h等块元素 也会水平居中
+
+text-align: left;
+text-align: right;
+text-align: center;
+text-align: justify;
+text-align: justify-all;
+text-align: start;
+text-align: end;
+text-align: match-parent;
+
+
+
+  

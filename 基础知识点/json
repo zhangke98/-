@@ -1,0 +1,20 @@
+什么是json？
+JSON(JavaScript Object Notation, JS 对象简谱) 是一种轻量级的数据交换格式。
+json是一种数据格式，本质是一段字符串
+json格式和JS对象结构一致，对JS语言更友好
+window.JSON是全局对象(key都需要双引号)，JSON.stringify JSON.parse
+
+
+
+JSON.parse() 方法用于将一个 JSON 字符串转换为对象。
+
+{
+    "name":"zhangsan"
+}
+
+JSON.parse之后
+
+{name: "zhangsan"}
+
+JSON.stringify()
+将要发送的 JavaScript 对象转换为 JSON 字符串

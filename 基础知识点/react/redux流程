@@ -1,0 +1,16 @@
+action的作用
+派发action更新store中的数据
+
+
+
+dispatch的action会被reducer捕获到，其实是action先被传送至store，再由store交付给reducer的，因为dispatch是store的方法，action通过回调到达的store，而之前我们在创建store的时候使用了这样的声明 var store = createStore（reducer），使得store与reducer建立了某种联系，自然的，reducer能够接收到触发的action。
+
+
+
+
+介绍redux：
+        官方解释：Redux 是 JavaScript 状态容器,提供可预测化的状态管理。我的理解是，redux是为了解决react组件间通信和组件间状态共享而提出的一种解决方案，主要包括3个部分，（store + action + reducer）。
+
+介绍redux数据流：
+    视图触发dispatch action，然后reducer根据接收到的action执行相应的处理函数更新store的state，而state又是作为数据来源与应用绑定的，所以store的state一更新，应用视图也会同步刷新
+

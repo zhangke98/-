@@ -1,0 +1,1 @@
+对于上面的例子，Object.assign（）函数基本上可以与 Object spread 操作符互换。事实上，object spread spec 明确指出{… obj}等同于Object.assign（{}，obj）。

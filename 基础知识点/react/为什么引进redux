@@ -1,0 +1,5 @@
+//为什么需要redux  redux主要解决什么问题
+为什么引进redux
+
+redux是为解决react组件间通信和组件间状态共享而提出的一种解决方案，主要包括3个部分
+store+action+reducer

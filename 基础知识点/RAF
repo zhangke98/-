@@ -1,0 +1,19 @@
+在Web应用中，实现动画效果的方法比较多，Javascript 中可以通过定时器 setTimeout或者setInterval 来实现，css3 可以使用 transition 和 animation 来实现，html5 中的 canvas 也可以实现。除此之外，html5 还提供一个专门用于请求动画的API，那就是 requestAnimationFrame，顾名思义就是请求动画帧。
+要想动画流畅，更新频率要60帧/秒，即16.67ms更新一次视图
+setTimeout需要手动控制频率，而RAF浏览器会自动控制
+后台标签或者隐藏iframe中（最小化），RAF会暂停，而setTimeout依然执行
+
+// 3s 把宽度从 100px 变为 640px ，即增加 540px
+// 60帧/s ，3s 180 帧 ，每次变化 3px
+const $div1 = $('#div1')
+let curWidth = 100
+const maxWidth = 640
+// RAF
+function animate() {
+    curWidth = curWidth + 3
+    $div1.css('width', curWidth)
+    if (curWidth < maxWidth) {
+        window.requestAnimationFrame(animate) // 时间不用自己控制
+    }
+}
+animate()

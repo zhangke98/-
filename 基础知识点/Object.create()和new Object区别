@@ -1,0 +1,41 @@
+const obj1 = {
+    a: 10,
+    b: 20,
+    sum() {
+        return this.a + this.b
+    }
+}
+const obj2 = {
+    a: 10,
+    b: 20,
+    sum() {
+        return this.a + this.b
+    }
+}
+const obj21 = new Object({
+    a: 10,
+    b: 20,
+    sum() {
+        return this.a + this.b
+    }
+})
+const obj21 = new Object(obj1) // obj1 === obj21
+//obj1!==obj12
+
+
+const obj3 = Object.create(null)  // {} 没有属性也没有原型
+const obj4 = new Object() // {} 没有属性但是有原型__proto__
+const obj5 = Object.create({
+    a: 10,
+    b: 20,
+    sum() {
+        return this.a + this.b
+    }
+})
+obj5依然是｛｝空对象 obj5.a=10但是有了原型 且原型上的属性和方法就是参数里的值
+// 意思创建一个空对象，create中的内容挂在到空对象的原型上
+
+const obj6 = Object.create(obj1)  // obj6的原型指向obj1
+// 通过ob1创建obj6，那么obj6的原型指向obj1
+ obj6._proto_ === obj1
+ obj6！== obj1

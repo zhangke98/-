@@ -1,0 +1,19 @@
+（1）功能区别：slice切片、splice剪接
+（2）参数和返回值：返回值都为数组
+（3）是否为纯函数：slice纯函数、splice非纯函数
+const arr = [10, 20, 30, 40, 50]
+// slice 纯函数
+const arr1 = arr.slice()   // 10,20,30,40,50
+const arr2 = arr.slice(1, 4)  // 20,30,40
+const arr3 = arr.slice(2)   // 30,40,50
+const arr4 = arr.slice(-2)    //40,50  截最后两个
+// splice 非纯函数
+向/从数组中添加/删除项目，然后返回被删除的项目
+const spliceRes = arr.splice(1, 2, 'a', 'b', 'c')   // 把20 30删除 插入a,b,c 返回的是[20,30]
+const spliceRes1 = arr.splice(1, 2)    // 把1-2位置移除
+const spliceRes2 = arr.splice(1, 0, 'a', 'b', 'c') 只添加不删除
+console.log(spliceRes, arr)
+
+！！！！！！
+index	必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+howmany	必需。要删除的项目数量。如果设置为 0，则不会删除项目。 而不是end

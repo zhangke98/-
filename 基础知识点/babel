@@ -1,0 +1,4 @@
+相当于是ES6的编译，将ES6转换成ES5语法，因为有的浏览器太落后，ES6语法无法识别
+
+babel-loader再module里
+module模块就是针对不同模块做不通的解析

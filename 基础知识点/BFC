@@ -1,0 +1,21 @@
+BFC
+
+会形成出发BFC的条件有:
+1.float的值不为none
+2.overflow的值不为visible
+3.display的值为 tabel-cell/table-caption/inline-block的一个
+4.position的值不为relative和static
+
+
+
+总结：但凡一切使div脱离文档流的属性和值，都可以形成bfc
+代价是浏览器会重新渲染dom结果
+
+
+开启BFC后该元素会变成一个独立的布局区域
+
+BFC的作用和特点:
+元素开启BFC后的特点：
+1.不会被浮动元素所覆盖
+2.子元素和父元素外边距不会重叠
+3.可以包含浮动的子元素

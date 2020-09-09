@@ -1,0 +1,17 @@
+//字符串的不可变性
+//例1
+var str = "hello";
+str[1] = "W";
+console.log(str)
+
+//例2
+var str = 'andy';
+console.log(str);
+//andy
+str = 'red';
+console.log(str);
+//red
+
+//但是其实andy 并没有被　red 覆盖掉，而是red 在内存中开辟了一个新的空间，然后把str 指向 red.
+
+

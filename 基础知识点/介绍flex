@@ -1,0 +1,5 @@
+//介绍flex
+flex-wrap决定子容器是否换行
+flex-flow 决定子容器轴向与换行设置
+设置子容器主轴（横向）排列justify-content
+设置子容器沿交叉轴（纵向）排列align-items（

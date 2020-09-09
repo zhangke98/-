@@ -1,0 +1,7 @@
+z-index 元素层叠
+使用z-index属性可以设置元素的层叠顺序
+属性值越大说明这个元素离电脑屏幕越近
+
+适用范围：
+ z-index属性适用于定位元素(position 属性值为 relative 或 absolute 或 fixed的对象)
+

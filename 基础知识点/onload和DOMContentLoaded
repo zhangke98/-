@@ -1,0 +1,21 @@
+onload 通常用于 <body> 元素，在页面完全载入后(包括图片、css文件等等)执行脚本代码
+图片加载
+
+console.log('start')
+var img=docunment.creactElement('img')
+window.onload=function(){
+    console.log('loaded')
+}
+img.src='/xxx.png'
+console.log('end')
+
+
+Window.onload和DOMContentLoaded的区别  也是document.load和ready的区别
+Window.addEventLiatener(‘load’, function() {
+    // 页面的全部资源加载完才会执行，包括图片视频等
+})
+
+Document.addEventListener(‘DOMContentLoaded’, function() {
+   // DOM加载完成后执行，此时图片视频可能还没有加载完成
+}
+如果在渲染的时候遇到img标签链接的图片还没下载完也会继续渲染，会把这个位置空出来，等到图片下载完成插入就行，图片的大小未指定可能引起reflow，比如图片过大把旁边内容撑下去了，所以最好图片设置宽和高来避免重新渲染。

@@ -1,0 +1,12 @@
+每个数据类型的原型上都有toString方法（除null和undefined，没有原型），
+toString把当前的数据类型转化为字符串
+
+
+var arr=[1,2,3];
+arr.toString()//输出“1,2,3” 可以用在数组扁平化
+Object.prototype.toString.call(arr)//输出 "[object Array]"
+两个不一样
+
+
+var obj={a:1};
+obj.toString();//"[object Object]"

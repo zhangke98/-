@@ -1,0 +1,16 @@
+1.传统事件绑定
+<div onclick=””>123</div>
+div1.onclick=function(){};
+<button  onmouseover=””></button>
+
+(1)如果说给同一个元素绑定了两次或者多次相同类型的事件，那么后面的绑定会覆盖前面的绑定
+(2)不支持DOM事件流 （事件捕获阶段 =>目标元素阶段=>事件冒泡阶段）
+
+2.符合W3C标准的事件绑定的方式
+addEventListener/attachEvent (只支持冒泡，因为没有第三个参数)
+(1)如果说给同一个元素绑定了两次或者多次相同类型的事件，所有的绑定将会依次触发
+(2)支持DOM事件流
+addEventListener不用on前缀
+attachEvent要有on
+
+

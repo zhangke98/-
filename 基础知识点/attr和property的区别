@@ -1,0 +1,17 @@
+Property是DOM元素作为js对象中的属性，比如nodeName  nodeType等 不会体现在HTML结构中
+而attribute是HTML标签上的属性,比如id、class、title等 会改变HTML标签结构
+注意：两者都可能引起dom重新渲染
+尽量用property
+
+attribute 如何操作 ? setAttribute  getAttribute
+
+例子1：
+p1.setAttribute('data-name', 'imooc')
+console.log( p1.getAttribute('data-name') )
+例子2：
+// property形式
+p1.style.fontSize="50px"; // 这是正确的，可以和操作property形式替换使用
+// p1.setAttribute('style', 'font-size: 50px;')
+console.log( p1.getAttribute('style') )
+
+小结：property和attribute形式都可以修改节点的属性(font-size)，但是对于新增或删除的自定义属性，能在html的dom树结构上体现出来的，就必须要用到attribute形式了。

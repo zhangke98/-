@@ -1,0 +1,7 @@
+//原生ajax对xhr怎么处理的
+首先实例一个XMLHttpRequest对象，用其中的open方法建立连接；send方法传输数据（前端传到后台）；然后再利用onreadystatechange 监听readyState的变化，当其为4时，代表请求完成；
+
+
+
+
+onreadystatechange指向了一个函数,这个函数是在readyState发生改变的时候触发

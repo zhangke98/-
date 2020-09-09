@@ -1,0 +1,5 @@
+JS异步的实现/处理方式?
+(1)回调函数 jsonP
+(2)事件监听 onReadyStateChange
+(3)Promises对象 fetch 
+(4)async/await 

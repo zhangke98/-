@@ -1,0 +1,51 @@
+闭包是作用域应用的特殊情况，有两种表现：
+1.函数作为参数被传递
+2.函数作为返回值被传递
+
+两个经典输出题：
+1.
+function create() {
+    const a = 100
+    return function () {
+        console.log(a)
+    }
+}
+ 
+const fn = create()
+const a = 200
+fn() // 100
+
+
+2.
+function print(fn) {
+    const a = 200
+    fn()
+}
+const a = 100
+function fn() {
+    console.log(a)
+}
+print(fn) // 100
+
+(闭包)所有的自由变量的查找，是在函数定义的地方向上级作用域查找，不是在执行的地方！
+例2如果去掉const a = 100则会报错：a is not defined 
+进一步说明是在函数定义的地方向上级作用域查找，找不到就直接报错！如果在找不到的情况接着在执行的地方查找就会打印200，但是这里不打印，说明不会在执行的地方查找。
+
+let i
+for(i=0;i<=3;i++){
+    setTimeout(function(){
+        console.log(i)
+    },0)
+}
+//输出4个4
+
+
+let i=100
+function test(){
+    alert(i)
+    i=10
+    alert(i)
+}
+test()
+alert(i)
+// 100 10 10  var一样的

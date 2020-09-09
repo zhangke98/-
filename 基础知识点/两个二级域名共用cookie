@@ -1,0 +1,16 @@
+种cookie时，domain的设置是为了以后只有访问这个domian下的网址，才会把这个cookie项带上，这个在sso单点登录的时候比较常见
+
+
+1，共享之间的二级域名必须是解析于同一个顶级域名之下；
+
+2，比如现在有两个二级域名，a.xxx.com(域名A)和b.xxx.com(域名B)。两个都解析于域名xxx.com顶级域名之下。
+
+3，现在域名A的登录cookie域名B下面需要使用。
+
+4，域名A的登录cookie把cookie域设置成xxx.com（注意不要写成www.xxx.com，因为www.xxx.com也属于二级域名，不是顶级域名），path设置成’/’
+
+5，此时域名B下面可以读取域名A写入的cookie
+
+6，这样就可以实现域名A的cookie被域名B共享
+
+7，如果要实现相互共享，就把两个域名的cookie域都设置成xxx.com

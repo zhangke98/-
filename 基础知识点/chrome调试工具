@@ -1,0 +1,7 @@
+elements  dom结构的展示
+console   输出
+debugger  在html里设置断点 在 sources 里调试   (源码)  也可以在sources代码行数上设置断点
+network  请求资源加载 状态码等等
+application   cookie  storage
+
+模拟慢速3G网络  network  online里

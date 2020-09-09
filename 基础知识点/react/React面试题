@@ -1,0 +1,199 @@
+1.redux中间件的原理是什么? redux thunk为例
+    改装dispatch 桥梁作用
+    一般action是个对象
+    使用redux thunk action可以是个函数
+    redux 派发action 转给store  store转给reducer  reducer再改变store
+    中间件指的是action和store之间
+    action到达store之前会走这个中间件
+    中间件可以把函数转成对象
+2.你会把数据统一放到redux中管理还是共享数据放在redux中管理?
+    所有的数据都要放在redux里面
+    数据的处理方式是一定的 方便定位问题可维护性可扩展性  不用关心props和state
+    redux能存储5个G的数据(内存)
+3.immutable  facebook推出的库
+    redux+immutable性能最优
+4.ComonentWillReceiveProps的调用时机?(虽然已经被废弃了)
+    props改变的时候才会调用
+    子组件第二次接收到props的时候才会调用
+
+5.React性能优化的最佳实践?
+    (1)pureComponent自带shouldcomponentupdate 的前比较   与immutable结合
+
+7.为什么虚拟dom会提升代码性能?
+    两个真实dom(非常复杂,事件属性等)比较非常消耗性能,而js对象的比较容易,比较快
+    diff算法
+8.webpack中是借助loader还是babel完成的JSX代码的转化?
+    没有react-loader借用babel的babel-preset-react插件
+    vue是借用的nue-loader
+
+
+
+10.refs的作用是什么?你在什么业务场景下使用过refs?
+    操作dom 
+    使用场景:① 图片的宽和高 直接操作会方便一些 比如放大镜功能  react不能操作dom的只能用refs
+
+11.ref是一个函数,有什么好处?
+    尽量不用字符串用函数式写法,防止内存泄漏
+
+12.高阶组件你是怎么理解的,它本质是一个什么东西?
+    高阶函数：高阶函数是指函数可以作为另一个函数的参数或者返回值。
+    高阶组件：是接收一个组件作为参数，并返回一个新组件的函数。
+    高阶组件是一个函数。
+    高阶组件的例子 :react-redux的connect方法
+   connect是一个返回函数的函数（就是个高阶函数)
+   const enhance = connect(mapStateToProps, mapDispatchToProps);
+   返回的函数就是一个高阶组件，该高阶组件返回一个与Redux store
+   关联起来的新组件
+    const ConnectedComment = enhance(Component);
+    通过一个组件再去生成另一个组件
+    本质是一个函数 接收的参数是函数 返回的也是函数
+    对组件进行包装,把共用的写到高阶组件中去
+    高阶组件和继承哪个更好? react不要使用继承
+    看设计模式   组合(组件拼接优于继承
+    会产生高阶组件地狱
+    hook解决了上面的问题
+14.受控组件和非受控组件的区别?
+    受控组件的改变受控于数据的变化 数据变了页面跟着变
+    非受控组件 操作dom通过refs只拿dom的数据,而不是通过数据去控制dom的内容
+    受控组件更好  因为react是数据驱动的框架
+
+16.函数组件怎么做性能优化?
+    函数组件的性能比普通组件高,因为没有生命周期,没有构造类的过程
+    但是没有componentshouldupdate  可以用memo就具有这个特性了
+    react通过shouldComponentUpdate来减少重复渲染
+    
+17.react中的this指向怎么解决?
+    bind this放在constructor里面 箭头函数的this指向的是该所在组件
+18.在那个生命周期中发ajax?
+    componentDidMount方法中的代码，是在组件已经完全挂载到网页上才会调用被执行，所以可以保证数据的加载
+    componentDidMount() 只执行一次
+    componentwillmount已经被废弃了
+    在第一次渲染后调用,只在客户端
+    服务端器端渲染(SSR)
+19.SSR的原理是什么?
+20.redux-saga的设计思想?什么是sideEffects?
+21.组件是什么?类是什么?类被编译成什么?
+    模块 webpack的概念 模块可以是js文件可以是css文件
+    import这种是给webpack用的
+    组件不能说是模块
+    组件指的是页面的一部分
+
+    类对应的是构造函数
+    类是函数
+
+22.react vue jquery是否可以共存在一个项目?怎么共存?
+    可以
+23.你是如何跟着社区成长的?
+    订阅官方团队推特账号
+24.如何避免ajax数据重新获取?
+    redux进行管理
+25.react-router的 基本原理 hashhistory browserhistory
+    react-router 更新到了4.0，很多API已经不一样了。history 被纳入了 react-router-dom 文件下的 HashRouter、BrowserRouter等
+    4里面 路由变成组件了非常灵活
+    hash不需要后端支持可以直接上线
+    browser必须要在服务器上做路由配置
+26.reselect
+
+27.什么情况下使用异步组件?
+    react-loadable库 懒加载
+    进入首页的时候只加载首页的,访问哪个页面再去加载哪个文件,按需加载
+    可以对组件进行异步加载处理,通常可以使用 React-loadable
+28.xss攻击在react中如何防范?
+    慎用dangerouslySetInnerHTML
+29.immutable.js和redux的最佳实践?
+
+
+    1、组件间通信
+    由于connect后，各connect组件是共享store的，所以各组件可以通过store来进行数据通信，当然这里必须遵守redux的一些规范，比如遵守 view -> aciton -> reducer的改变state的路径
+    2、通过对象驱动组件进入生命周期
+    对于一个react组件来说，只能对自己的state改变驱动自己的生命周期，或者通过外部传入的props进行驱动。通过redux，可以通过store中改变的state，来驱动组件进行update
+    3、方便进行数据管理和切片
+    redux通过对store的管理和控制，可以很方便的实现页面状态的管理和切片。通过切片的操作，可以轻松的实现redo之类的操作
+
+32.setstate为什么要异步?
+    js是单线程语言,setState改变了状态并导致重新渲染。这可能是一项昂贵的操作，使其同步可能会使浏览器无响应。 因此，setState调用是异步的以及批处理以获得更好的性能和UI体验。
+33.介绍connect?
+    connect 的第一个参数是 mapStateToProps
+    这个函数允许我们将 store 中的数据作为 props 绑定到组件上
+    connect 的第二个参数是 mapDispatchToProps
+    由于更改数据必须要触发action, 因此在这里的主要功能是将dispatch 作为props 绑定到 组件上
+34.为什么reducer必须是纯函数?
+    纯函数:不修改函数的输入值，对于任何相同的输入有着相同的输出结果,没有副作用.
+    通过redux的源码可以看到，Redux只通过比较新旧两个对象的存储位置来比较新旧两个对象是否相同。如果你在reducer内部直接修改旧的state对象的属性值，那么新的state和旧的state将都指向同一个对象。因此Redux认为没有任何改变，返回的state将为旧的state。
+为什么Redux这样设计？
+    答案只有一个：因为比较两个Javascript对象所有的属性是否相同的的唯一方法是对它们进行深比较。
+    但是深比较在真实的应用当中代价昂贵，因为通常js的对象都很大，同时需要比较的次数很多。
+    因此一个有效的解决方法是作出一个规定：无论何时发生变化时，开发者都要创建一个新的对象，然后将新对象传递出去。同时，当没有任何变化发生时，开发者发送回旧的对象。也就是说，新的对象代表新的state。
+
+    
+36.react有三个非常重要的概念：state、props与context。state其实应该被称为内部状态或是局部状态。“内部”表示它很少"跑出"组件，状态意味着它经常发生改变。Props与context用于在组件中传递数据，props仅仅支持逐层传递数据，但是context则支持跨级传递。State、props与context都是react中的数据载体，他们都是各司其职，让数据在组件中优雅的变化和流动
+
+
+39.什么是JSX?
+    JSX 是JavaScript XML 的简写，是 React 使用的一种文件
+    浏览器只能处理 JavaScript 对象，而不能读取常规 JavaScript 对象中的 JSX
+　　所以为了使浏览器能够读取 JSX，首先，需要用Babel转换器将 JSX 文件转换为 JavaScript 对象，然后再将其传给浏览器
+为什么要用jsx?
+    如果要在JS里写HTML，就是创造一个一个的DOM对象，用JS来写，会非常的冗余并且不能一目了然的看清楚DOM的结构。所以就扩展成了JSX，直接用HTML的写法在js中写DOM
+
+
+42.react什么时候是同步的什么时候是异步的?
+    setState 只在合成事件（react为了解决跨平台，兼容性问题，自己封装了一套事件机制，代理了原生的事件，像在jsx中常见的onClick、onChange这些都是合成事件）和钩子函数（生命周期）中是“异步”的，在原生事件和 setTimeout 中都是同步的
+43.react渲染机制?
+　　1）当页面一打开，就会调用render构建一棵DOM树
+　　2）当数据发生变化（ state | props ）时，就会再渲染出一棵DOM树
+　　3）此时，进行diff运算，两棵DOM树进行差异化对比，找到更新的地方进行批量改动
+44.state和props的区别
+    state是组件自己管理数据，控制自己的状态，可变；
+    props是外部传入的数据参数，不可变；
+    没有state的叫做无状态组件，有state的叫做有状态组件；
+    多用props，少用state。也就是多写无状态组件。
+45.在构造函数中调用 super(props) 的目的是什么
+　　在 super() 被调用之前，子类是不能使用 this 的
+46.兄弟组件传递：属于同一个父级，父组件分别和这两个组件传递。比如子组件A操作执行父组件方法，父组件进行修改，然后把信息传给子组件B
+47.UI组件和容器组件
+    UI组件：负责页面渲染
+    容器组件：处理页面逻辑
+48.无状态组件主要用来定义模板
+有状态组件主要用来定义交互逻辑和业务数据
+49.在哪些生命周期中可以修改组件的state
+　　componentDidMount和componentDidUpdate
+
+51.setState的两个参数?
+    第一个参数是要改变的state对象
+　　 第二个参数是state导致的页面变化完成后的回调，等价于componentDidUpdate
+52. react-router的原理
+　　BrowserRouter或hashRouter用来渲染Router所代表的组件
+　　Route用来匹配组件路径并且筛选需要渲染的组件
+    Link用来在各个页面间切换
+　　现在，我们应用需要在各个页面间切换，如果使用锚点元素实现，在每次点击时，页面被重新加载，React Router提供了<Link>组件用来避免这种状况发生。当 你点击<Link>时，url会更新，组件会被重新渲染，但是页面不会重新加载
+　　Redirect重定向　
+    exact精准匹配
+53.immutable作用?
+Immutable 实现的原理是 Persistent Data Structure（持久化数据结构），也就是使用旧数据创建新数据时，要保证旧数据同时可用且不变
+
+使用immutable来改变state：先安装immutable（用在reducer中）
+安装redux-immutable，在最外层的reducer中，将其中的state也变为immutable对象，
+
+54.react父子组件如何通讯?
+1，父组件可以向子组件传递props，props中可以是数据，也可以是（回调）函数
+2，子组件的state发生变化时，调用父组件传来的（回调）函数，同时将数据作为参数传递回去
+
+55. setState是异步的吗
+直接用setState它是异步的
+setTimeout中它是同步的
+自己定义的dom事件也是同步的
+1.在组件生命周期中或者react事件绑定中，setState是通过异步更新的。 2.在延时的回调或者原生事件绑定的回调中调用setState不一定是异步的。这个结果并不说明setState异步执行的说法是错误的，更加准确的说法应该是setState不能保证同步执行。
+
+
+
+setstate你一般怎么用?传什么进去?对象还是方法?
+    一般是对象 建议通过箭头函数往外面返回一个对象
+    多个setstate合并成一个 ,用对象做累加会遇到这个问题
+    箭头函数不会出现这种问题
+
+
+
+    输出this.refs.input.value的值是之前的值,
+    解决方法setState的第二个参数 回调函数
+    setstate是异步的遇到的坑,获取dom的内容获取的是之前的

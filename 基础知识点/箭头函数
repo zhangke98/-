@@ -1,0 +1,44 @@
+返回对象字面量要用圆括号包起来
+
+箭头函数的特点
+1.不能作为构造函数，不能使用new
+2.不能使用argumetns,取而代之用rest参数...解决
+3.不绑定this，会捕获其定义时所在的this指向作为自己的this
+4.没有原型对象
+
+
+
+
+
+在使用箭头函数时，arguments 指向的对象并不是当前函数所属的argments，而是上级函数的arguments，所以需要将箭头函数转为function。
+这一点与箭头函数中的this相像。
+
+
+
+var a = 1;
+if(a){
+var b = 2;
+var c = 3;
+}
+var obj = {
+c: 4,
+print: () => { console.log(this.c) }
+}
+console.log(a,b,c)
+obj.print()   //c
+
+
+箭头函数还不能够直接作为对象的方法使用造成的，指向window
+
+
+var obj = {
+    age:18,
+    getAge:function(){
+        var b = this.age;
+        var fn = () => new Date().getFullYear() - this.age;
+        return fn();
+    }
+}
+ 
+console.log(obj.getAge());  //1998
+指向obj

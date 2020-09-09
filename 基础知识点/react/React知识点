@@ -1,0 +1,230 @@
+1. React中文件夹中Index.js的作用
+index.js可以在import的时候直接将路径写到文件夹的位置就可以了，系统会自动到文件夹中找index.js来进行索引导入
+
+2. 在React中,行内样式并不是以字符串的形式出现,而是通过一个特定的样式对象来指定。react的style是用js对象表示 js对象本身有一个大括号 所以最后是两个大括号
+<p style={{ fontSize: '30px',  color: 'blue' }}
+
+3.dangerouslySetInnerHTML 搭配__html一起使用转义富文本标签 react防止xss攻击
+
+4.react渲染列表用啥
+ map和key
+ （1）为什么要使用key？
+ 
+ react根据key来决定是销毁重新创建组件还是更新组件，原则是：
+   
+（2）
+
+5. 为什么事件处理函数要绑定this？
+如果事件处理函数不绑定直接调用的话this的值将是undefined
+这不是React的原因，这是JavaScript中本来就有的。如果你传递一个函数名给一个变量，然后通过在变量后加括号()来调用这个方法，此时方法内部的this的指向就会丢失。
+
+6.指定事件处理函数时什么参数都不传的话它的第一个参数就是event参数
+react中的event是封装的
+react的事件和dom的区别？
+react中的event是合成事件，模拟出来DOM事件所有能力
+event.nativeEvent是原生事件
+事件并没有挂在到真实的dom节点上面，而是全都挂载到document上
+仔细想想react的事件属于传统html的所以可以不传event
+
+7.受控组件：表单中的值受state的控制，需要自行监听onchange更新state
+  非受控组件：不受state控制，使用ref从dom中获取数据，需要操作dom
+
+（1）受控组件
+原生textarea没有value属性 <textarea>(在这里添加内容)</textarea>
+react中的textarea正好相反使用value控制，不能在中间写内容
+在<select>上使用options.value或defaultValue，而不是在<option>上设置selected。
+checkbox radio也是用state onchange
+（2）非受控组件  defaultValue   defaultChecked
+什么时候必须用非受控组件 必须手动操作dom的 比如  input=file文件上传  富文本编辑器等这种交互的 必须要操作dom 不能通过state去操作
+
+8.props的作用？
+传数据 传函数类比onClick()只不过是两个文件罢了 类型检查
+
+
+9.状态(数据)提升
+当使用React遇到几个组件需要共用状态数据的情况时，这个时候就需要将共享的状态数据提升至与他们最靠近的父组件进行管理。
+
+10.setState
+不可变值 ：不可以直接修改this.state中的值
+可能是异步更新  
+可能会被合并  传入对象会被合并 传入函数不会
+两种方式不能一起用 传入对象会把函数式积累的效果都清空
+
+react相关回调中（生命周期回调、合成事件监听回调）: 异步
+其它异步回调中（定时器、原生DOM事件监听回调、Promsie回调）: 同步
+
+
+其实本身执行的过程和代码都是同步的，只是合成事件和钩子函数的调用顺序在更新之前，导致在合成事件和钩子函数中没法立马拿到更新后的值，形成了所谓的“异步” console.log在数据发生改变前执行
+
+11.更新后的生命周期函数
+getDerivedStateFromProps 用于替换 componentWillReceiveProps ，该函数会在初始化和 update 时被调用
+getSnapshotBeforeUpdate 用于替换 componentWillUpdate ，该函数会在 update 后 DOM 更新前被调用，用于读取最新的 DOM 数据。
+
+12.函数组件和class组件的区别 也就是无状态组件和状态组件的区别
+class的 render()方法将返回一个组件实例
+函数 输入props返回jsx  没有实例 没有生命周期  没有state
+(函数里面怎么可能有生命周期函数)
+
+13.react portals 占坑
+
+14.context
+场景：一些公共信息比如语言主题需要传递给各个组件
+用props太繁琐 
+用redux小题大做了
+如果你在组件间传递的数据逻辑比较复杂，可以使用redux；
+如果组件层级不多，可以使用props；
+如果层级较深，数据逻辑简单，可以使用context。
+
+15.react如何异步加载组件？
+在React16.6中引入了React.lazy和React.Suspense，这两个组件，可以用来实现异步加载组件
+需要注意的一点是，React.lazy 需要配合 Suspense 组件一起使用，在 Suspense 组件中渲染 React.lazy 异步加载的组件。如果单独使用 React.lazy，React 会给出错误提示。
+React.lazy封装import
+
+16.react常见的性能优化的方案
+1.绑定this的时机，减少函数bind this次数
+2.异步组件
+3.SCU
+4.PureComponent,实现了浅比较的SCU memo是函数组件中的PureComponent
+减少继承该组件的组件渲染的次数从而达到优化性能的目的
+5.渲染列表时加key
+6.自定义事件dom事件及时销毁
+7.合理使用immutable.js
+
+17.SCU（react性能优化的生命周期函数）
+SCU默认返回true
+React 默认：父组件有更新，子组件则无条件也更新！！！
+性能优化对于 React 更加重要！
+SCU 一定要每次都用吗？—— 需要的时候才优化
+scu一定要配合不可变值
+
+18.immutable.js
+创建不可变数据
+
+19.什么是高阶组件？
+接收一个组件返回一个新组件  更多的是拼装  传入的是抽离的公共组件
+redux 的connect就是高阶组件
+
+20.render props坑
+
+
+
+22.react-redux
+
+(1)什么是React-redux
+React-redux是用于连接React和Redux的
+(2)为什么使用React-redux
+使用React-redux可以使redux部分代码更简洁更明了，connect高阶组件将state和dispatch注入到props
+(3)没有react-redux的时候用得是store.getState()  
+store.subscribe(this.handleStoreChange)
+(4)查数据通过mapStateToProps，增删改数据通过mapDispatchToProps
+
+mapStateToProps
+
+const mapStateToProps=(state)=>{
+    return {
+        inputValue:state.inputValue,
+        list:state.list
+    }
+}
+
+mapDispatchToProps
+dispatch的其实还是对象只不过可以复用action了
+同步action返回action对象
+const mapDispatchToProps=(dispatch)=>{
+    return {
+        handleInputChange(e){
+            const action = getInputChangeAction(e.target.value)
+            dispatch(action)
+        },
+
+        handleClick(){
+            const action = getAddItemAction()
+            dispatch(action)
+        },
+        handleDelete(index){
+            const action = getDeleteItemAction(index)
+            dispatch(action)
+        }
+       
+    }
+}
+
+异步action返回派发action的函数 两次派发  在处理异步的action时我们需要在异步回调之后派发action
+组件中派发获取数据的action
+获取数据的action中派发了获取的数据
+
+componentDidMount(){
+          const action = getTodoListAction()
+          store.dispatch(action)
+         //  如果action是函数会自动执行里面的函数体     
+      }
+
+export const getInitItemAction=(data)=>({
+    type:INIT_TODO_ITEM,
+    data
+})
+
+export const getTodoListAction=()=>{
+    return (dispatch)=>{
+        axios.get('/list').then((res)=>{
+            const data=res.data;
+            // console.log(data);
+            const action = getInitItemAction(data)
+            dispatch(action)
+
+    })
+ }
+}
+
+23.react-router路由模式(两种)
+老浏览器提供的 hash模式， 我们称之为： HashRouter
+H5提供的的 history 模式，我们称之为 BrowserRouter
+注意： H5模式的路由需要后端支持，所以没有特殊需求用第一个即可
+
+
+
+25.JSX的本质是什么
+jsx不是js
+jsx的本质是js对象 React.createElement是核心函数
+JSX 本质其实是一个createElement函数
+
+26.说一下react的合成事件机制
+react中的event不是原生的是合成的时间对象
+react所有的事件都被挂载到document上
+为什么要合成事件机制
+(1)更好的兼容性和跨平台
+(2)挂载到document上，减少内存消耗避免频繁解绑（冒泡）
+(3)方便事件的统一管理
+
+27.batchUpdate机制和事务机制
+占坑
+
+
+29.context是什么 如何应用
+父组件向其下所有子组件传递信息
+
+30.什么是纯函数
+返回一个新值，没有副作用
+
+21.为什么放在componentDidMount
+这个时候已经渲染完了 整个应用会更加流畅
+
+
+
+23.什么时候使用异步组件
+（1）加载大组件
+（2）路由懒加载
+
+24.多个组件有公共逻辑，如何抽离
+（1）高阶组件
+（2）render props
+
+25.redux如何进行异步请求
+使用异步action
+
+26.react-router如何配置懒加载
+通过suspense组件配合lazy实现懒加载
+
+
+
+

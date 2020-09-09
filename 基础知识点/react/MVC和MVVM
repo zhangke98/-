@@ -1,0 +1,15 @@
+MVC 和 MVVM
+MVC的定义：MVC是Model-View- Controller的简写。即模型-视图-控制器
+MVC是单向通信。也就是View跟Model，必须通过Controller来承上启下
+MVVM即Model-View-ViewModel的简写。即模型-视图-视图模型
+模型（Model）指的是后端传递的数据。视图(View)指的是所看到的页面
+MVC和MVVM的区别并不是VM完全取代了C，只是在MVC的基础上增加了一层VM，只不过是弱化了C的概念
+
+React没有这个。
+React是一个单向数据流的库，状态驱动视图。只是一个视图层框架
+
+MVC和MVVM的区别
+MVC 将后端返回的数据与模板相结合，渲染生成HTML页面
+MVC所有通信都是单向的。只实现了数据的更改来控制视图
+MVVM一个最显著的特征：数据和视图的双向绑定，不仅实现了数据的更改来控制视图，还实现了视图更改控制数据
+

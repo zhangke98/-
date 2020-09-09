@@ -1,0 +1,20 @@
+属性名不能重复
+且数字属性名=字符串属性名
+
+每个symbol生成的是不一样的
+Symbol('1')!==Symbol('1') 创建唯一值
+
+对象的属性名不一定是字符串也可以是symbol 字符串 null等
+数组的索引也是字符串,最终都会被转换成字符
+
+
+var obj={}
+var b={name:xxx}
+var a={aaa:xxx}
+obj[b]=obj[a]
+因为ab都会被转化成"[object Object]"
+
+var obj={a:1};
+obj.toString();//"[object Object]"
+
+

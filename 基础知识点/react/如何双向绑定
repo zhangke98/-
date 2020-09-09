@@ -1,0 +1,3 @@
+react是如何实现双向绑定的
+通过绑定 onChange事件  触发之后会改变state的值
+可以实现双向绑定的标签有input:type=text radio textarea select

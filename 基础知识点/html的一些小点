@@ -1,0 +1,103 @@
+1. 浏览器内核分成两部分：渲染引擎和JS引擎。
+
+由于JS引擎越来越独立，浏览器内核 就倾向于单指渲染引擎。
+
+五大浏览器（国际）
+
+IE trident
+
+火狐（firefox） gecko
+
+safari webkit
+
+opera（欧朋）谷歌（chrome） 两个都是blink blink其实是webkit的分支
+
+国产浏览器都是采用webkit/blink的内核
+
+js引擎也称为js解释器，用来读取网页中的js代码，对其处理后执行。，比如chrome的V8
+
+2. Web标准的构成：结构 表现 行为
+
+3. h7没用不会解析，中间的文字会当成普通文字
+
+4. 文本格式化 strong加粗 em 斜体del 删除ins下划线（insert）bisu没有语义不建议使用
+
+5. span和span之间有间隙 联想inline-block 一样的
+
+6. a
+
+① href 网址暂时还没有（空链接）只能用#，其他的×会跳转说Cannot GET ×
+
+② target默认 _self 在原标签处打开
+
+③下载链接：直接把文件压缩成exe zip doc等下载链接即可 点进去不跳转页面直接下载文件<a href="test.rar">下载文件</a>
+
+④锚点链接（内部链接）<a href="#test">去往test</a>   <p id='test'>是这儿</p>
+
+7. 在html网页中，一个空格我们键入空格键即可实现，如果键入多个空格键，最终也只显示一个空格间隙，这个时候就需要特殊字符&nbsp（牛逼空格）了&copy版权© 大于号&gt 小于号&lt greater than less than
+
+8. 在html中，<base>标签是使用来为页面中的所有相对 链接指定默认地址（目录）或默认属性（target属性），通常是用在那些有深度嵌套目录的页面。使用该标签后，之后的相对链接就可以从<base>标签指定的目录为基础开始写，就简短多了。
+
+<base>标签是针对所有的<a>标签起作用，如<base>标签和<a>标签都有target属性，那么遵循就近原则，最终效果取决于<a>标签中的属性。
+
+<base>标签必须在<head>标签中使用；
+
+9. 列表  ol/ul 感觉ul用的多一点，注意ol和ul的type属性
+
+自定义列表重点，自定义列表通常用于对术语或者名词进行解释和描述，没有任何项目符号dl dt dd  
+
+10. 表单 包括表单域 表单标签和表单按钮 三部分组成
+
+表单域就是form标签form会把它范围内的表单元素信息提交给服务器
+
+文件域file上传文件  和href下载区分
+
+lable  ① <<label>姓名<input type="radio"></label></p>
+
+②把文字包裹 for和id匹配<label for="test">姓名<input type="radio" id="test"></label>
+
+下拉列表 select+option
+
+option属性 selected=selected 类radio和checkbox的checked
+
+文本域textarea 中间可以自己设定预先的文字
+
+11. 新增多媒体标签 video ，支持三种视频格式，最好用mp4格式，mp4兼容性好。audio，音频，mp3，与视频基本一致 ogg格式既是音频又是视频
+
+12.  新增属性选择器，通过中括号，就不用id了
+
+新增结构伪类选择器：冒号+文档结构     冒号是伪类
+
+li:nth-child()  和 nth-of-type
+
+新增伪元素选择器：伪元素选择器可以帮我们利用css创建新标签元素，而不需要HTML标签，从而简化HTML结构   伪元素两个冒号
+
+before after在元素内部的前后插入内容，实际上是作为孩子，放在盒子里面的最前面和最后面。
+
+before{}和after{}创建一个元素，但是属于行内元素，转化之后才能给宽高，新创建的这个元素在文档树种是找不到的，所以称之为伪元素
+
+before和after必须有content属性
+
+伪元素和标签选择器一样，权重为1
+
+用伪元素选择器做土豆遮罩效果更好，因为结构永远比样式更重要！！！
+
+
+
+14. 
+
+C3图片模糊化处理：
+
+C3滤镜filter属性
+
+用法 filter: 函数（）
+
+C3 新增calc函数(calculate计算的简写)
+
+此函数让你在声明CSS属性值时执行一些计算
+
+width:calc(100%-80px);
+
+C3新增过渡属性 重点 transition经常和hover搭配使用
+
+transition: 要变化的属性 花费时间单位是秒，必须要写 运动曲线默认是ease可以省略 何时开始默认是0s可以省略

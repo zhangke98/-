@@ -1,0 +1,28 @@
+说一下react的生命周期函数?
+    生命周期函数指的是在某一时刻组件会自动执行的函数（render）
+    挂载:组件第一次被放到页面上 
+    componentWillMount 在组件即将被挂载到页面的时刻自动执行  只执行一次
+    componentDidMount
+
+    更新  updating  
+    componentWillReceiveProps ，当一个组件从父组件接受了参数，只要父组件的render被重新（第一次不执行，第二次执行）执行了，这个函数就会被执行  没有props永远不会执行 
+    state 通俗的讲：如果这个组件第一次存在于父组件中，不会执行，如果这个组件之前已经存在于父组件中，才会执行。
+    组件挂载自动执行的render不算第一次
+    共有的如下：
+    shouldComponentUpdate（？）组件更新之前被自动执行 （input输入之前，光标）要返回一个布尔值（一般是true）
+    componentWillUpdate   组件更新之前被自动执行shouldComponentUpdate返回的是true之后执行（输入了值）
+    componentDidUpdate 
+
+    卸载  1
+    只有will没有did
+    componentWillUnmount 子组件即将要被移除 componentDidUpdate之前
+
+
+
+react 16新的生命周期增加了static getDerivedStateFromProps()以及getSnapshotBeforeUpdate()，废弃了原有的componentWillMount()、componentWillUpdate()以及componentWillReceiveProps()，
+
+
+废除了三个will
+
+
+

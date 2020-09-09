@@ -1,0 +1,15 @@
+var a=0
+b=0
+function A(a){
+    A=function(b){
+        alert(a+b++)
+    }
+    alert(a++)
+}
+A(1)
+A(2)
+
+重写了全局的A 
+结果："1" "4"
+
+A(2)的时候因为重写的A是在外面的A中创建的所以a是2

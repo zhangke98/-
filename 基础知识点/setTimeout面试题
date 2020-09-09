@@ -1,0 +1,13 @@
+题目1：
+console.log(1);
+setTimeout(function(){
+    console.log(2)
+},1000)
+console.log(3);
+setTimeout(function(){
+    console.log(4)
+},0)
+console.log(5);
+
+// 输出1354 一秒钟之后输出2
+// 在现代浏览器中，最小值是4ms（从HTML5开始），在此之前，它是10ms。

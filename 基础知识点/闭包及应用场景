@@ -1,0 +1,37 @@
+var test=(function(i){
+    return function(){
+        alert(i*2)
+    }
+})(2)
+test(5)
+
+test是return返回的函数
+最后的结果是字符串4
+i=4会销毁 i=2不销毁
+alert的结果都是toString()
+
+缺点：浪费资源
+实际开发中的应用：隐藏数据  只提供API
+闭包的用途：可以读取函数内部的变量，可以让变量的值始终保持在内存中。
+
+function createCache(){
+      var data={}
+      return{
+        set:function(key,value){
+            // data.key=value 这是错误的 
+            data[key]=value 
+        },
+        get:function(key){
+            return data[key]
+        }
+    }
+}
+var c = createCache()
+c.set('a',100)
+console.log(c.get('a'))
+
+
+如果不调用set方法，就不能设置键值对，如果不调用get方法，就不能存储键值对
+比如想要设置data.b = 101会显示data is not defined，无法访问data
+
+ 

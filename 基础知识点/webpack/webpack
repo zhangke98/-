@@ -1,0 +1,55 @@
+开发环境：
+html-webpack-plugin 解析html向 HTML 动态添加 bundle
+HtmlWebpackPlugin 创建了一个全新的文件 index.html 并且自动把bundle.js添加到了html 中
+webpack-dev-server 启动服务器
+webpack-dev-server是webpack官方提供的一个小型Express服务器。使用它可以为webpack打包生成的资源文件提供web服务。
+webpack-dev-server 主要提供三个功能：
+自动打包编译(不用再build了)
+为静态文件提供服务
+自动刷新和热替换(HMR)
+
+webpack可以兼容模块化的方案，所以会加上很多模块化的代码
+
+
+有人会奇怪了，我这里还没有打包npm run build，没在dist目录看到文件，怎么就可以访问了？
+
+过程描述一下就是：最后新增了"dev":"webpack-dev-server"之后，并没有去npm run build而是直接去npm run dev，在dist打包目录下只有bundle.js，没有就index.html，但是居然运行成功了，能访问index.html，why???
+webpack-dev-server 生成 bundle.js 和 index.html ，放在内存中，直接作为 server 的返回（因为的这里是本地服务器），而不是生成两个文件。
+
+生产环境：
+新建一个生产环境的配置文件webpack.prod.js，prod就是production的简写
+这里的mode是production，如果不写mode，会报警告提示，默认是production，打包出来的文件会被压缩成一行，如果写成development，打包出来的文件代码就不会被压缩。
+
+接着我们需要去package.json去修改"build"，因为"build"的value还是"webpack"，默认运行的开发环境配置webpack.config.js，它会去启动我们写的服务devServer，那我们怎么办呢？
+来改一改package.json，"build" : "webpack"就是"build" : "webpack --config webpack.config.js"，而现在我们需要指定生产环境的配置，所以需要变成"build" : "webpack --config webpack.prod.js"
+
+
+生成 bundle.hash值.js，就是我们刚刚配置的[contenthash] 为什么要这样
+我们在下一章讲性能优化的时候再说，简单讲，为了页面运行的更快
+
+注意：生产打包就会生成inex.html文件了
+
+
+面试题：
+1前端为什么需要打包和构建
+代码层面
+(1)体积更小（压缩合并）加载更快
+(2)能够编译高级语言和语法 这样我们就可以使用像ES6 模块化 TS scss等 
+(3)兼容性和错误检查（Polyfill、postcss、eslint）
+工程化
+(1)统一高效的开发环境
+(2)统一的构建流程和产出标准
+
+2.常见的loader和plugin
+babel-loader：把 ES6 转换成 ES5
+css-loader 把css写入 js.但只有这一步还不够.
+还需要借助 style-loader 把写入js的样式代码插入到 index.html文件中
+HtmlWebpackPlugin js插入到html中去
+css-loader: 加载.css文件到bundle.js
+style-loader:使用<style>将css-loader内部样式注入到我们的HTML页面
+
+
+
+通常情况下，我们需要针对不同环境（开发环境、集成环境、生产环境等），进行相应策略的打包（比如是否替换接口地址，代码是否压缩等）。webpack就是通过process.env属性加以区分。
+
+

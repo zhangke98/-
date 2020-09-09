@@ -1,0 +1,19 @@
+      if(true){
+        //var x=10;  //x=10
+        let x=10     //未定义
+       }
+       console.log(x);
+       凡是带{}都是块级作用域，if(){} for(){} 对象{}
+       for会对每个i生成一个{}  虽然是在()定义相当于在{}中定义
+       for(let i=0;i<3;i++;){
+             console.log(i)
+         }
+        相当于
+        {
+            let i=0;
+            console.log(i)
+        }
+        {
+            let i=1;
+            console.log(i)
+        }

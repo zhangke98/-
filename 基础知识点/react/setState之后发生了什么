@@ -1,0 +1,18 @@
+调用setState后,发生了什么?
+    React会将当前传入的参数对象与组件当前的状态合并,触发调和过程.
+    
+    然后更新UI，react会进行diff运算，与上一次的虚拟DOM相比较，进行有效的渲染更新组件
+
+
+
+
+
+
+
+    将Virtual DOM树转换成actual DOM树的最少操作的过程 称为 调和 
+    Redux的dispatch最终也是会调用React的setState
+    调和过程
+    
+
+
+    

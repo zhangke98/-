@@ -1,0 +1,9 @@
+position：
+static（静态定位）：默认值。没有定位，元素出现在正常的流中
+absolute    相对于 static 定位以外的第一个父元素进行定位
+fixed       相对于浏览器窗口进行定位。
+relative    相对于其正常位置进行定位。
+fixed是一直都在,sticky是滚动到某个值才出现变成fixed
+
+
+由于position:relative这个属性并没有脱离文档流的，所以元素本身所占的位置会保留

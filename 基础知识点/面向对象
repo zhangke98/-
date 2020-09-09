@@ -1,0 +1,25 @@
+function Foo(){
+    getName = function(){
+        console.log(1);
+    };
+    return this;  //window
+} 
+Foo.getName = function(){
+    console.log(2);
+}
+Foo.prototype.getName = function(){
+    console.log(3);
+}
+var getName = function(){
+    console.log(4);
+}
+function getName(){
+    console.log(5);
+}
+Foo.getName();//2
+getName();//4
+Foo().getName();//1  Foo()修改了getName  Foo().相当于window.getName()
+getName();//1
+new Foo.getName()//2    //先.成员访问 有参数new  再new(无参数)   Foo.getName是输出2的函数 在 new这个函数执行相当于普通函数执行
+new Foo().getName();//3  先new Foo()  创建实例
+new new Foo().getName();//3   new (xxx.getName)() 实例上方法

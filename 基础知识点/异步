@@ -1,0 +1,77 @@
+1.为什么需要异步？
+因为遇到等待比如网络请求，定时任务等不能卡住  而且等待的过程cpu也是空闲的，这样也会浪费资源 所以需要异步 异步不会阻塞代码的执行
+
+3.应用场景
+网络请求，定时任务
+4.异步和同步的区别？
+JS是单线程语言
+异步不会阻塞代码执行
+同步会阻塞代码执行
+
+5.任务队列又分为宏任务和微任务
+主线程代码先执行 微任务的优先级大于宏任务
+定时器事件绑定 ajax 是宏任务
+promise async await 微任务
+await async2后面的代码console.log("async1 end");是微任务  async2会被执行
+new promise new的时候是同步的
+只有promise调用then的时候，then里面的函数才会被推入微任务中；
+
+6.为什么要有微任务？
+宏任务一般是规定时间内完成即可的任务，而且时间一般还挺长
+微任务如果等宏任务完成之后再完成，会浪费一定的时间
+而且微任务一般是获取到数据之后进行的回调处理，要保证顺序的连贯和一致所以要优先处理
+
+字节异步经典面试题
+async function async1() {
+    console.log("async1 start");
+    await async2();
+    //执行async2 等待返回的结果
+    console.log("async1 end");
+}
+async function async2() {
+    console.log("async2");
+}
+console.log("script start");
+setTimeout(function() {
+    console.log("setTimeout");
+}, 0);
+
+async1()
+new Promise(function(resolve) {
+    console.log("promise1");
+    resolve();
+}).then(function() {
+    console.log("promise2");
+});
+console.log("script end");
+
+
+输出结果：
+script start 
+async1 start
+async2
+promise1
+script end
+async2 end
+promise2
+setTimeout
+
+
+
+
+console.log(1);
+ 
+setTimeout(function(){
+   console.log(2);
+})
+ 
+Promise.resolve().then(function() {
+  console.log(3);
+}).then(function() {
+  console.log(4);
+});
+//1342  then始终在定时器前面
+
+
+
+

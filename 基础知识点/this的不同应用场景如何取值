@@ -1,0 +1,101 @@
+说五个
+1.普通函数 指向window
+2.箭头函数 父级作用域的this
+3.作为对象方法被调用 指向对象
+4.在class方法中被调用 指向实例
+5.call apply bind 指向括号中的第一个参数
+
+
+
+this的取值是在函数执行的时候确定的，不是在函数定义的时候确定的，这个规则适用于上面所有场景
+什么是this
+this指向调用上下文
+
+
+e.target 指向触发事件的元素。
+e.currentTarget 指向绑定事件的元素。
+this也是绑定事件的元素
+
+
+常见的this指向面试题
+
+例1：
+function foo() { 
+    console.log(this.bar); 
+} 
+var bar = "bar1"; 
+var o2 = {bar: "bar2", foo: foo}; 
+var o3 = {bar: "bar3", foo: foo}; 
+
+foo();   bar1         
+o2.foo();    bar2    
+foo.call(o3);     bar3
+
+三者分别是默认绑定、隐式绑定和显式绑定。
+
+例2：
+var name = 'Nicolas';
+function Person(){
+    this.name = 'Smiley';
+    this.sayName=function(){
+        console.log(this); 
+        console.log(this.name); 
+    };
+    setTimeout(this.sayName, 0);     // 第二次输出
+}
+
+var person = new Person();
+person.sayName();		// 第一次输出
+
+第一次输出的是person, Smiley。第二次输出的结果是window，Nicolas。
+尽管setTimeout是在构造函数中定义的，但是调用的时候，是在window中调用。
+
+例3：
+function Person() {
+  this.name = "Smiley";
+  this.sayName = function(){
+    console.log(this);
+    console.log(this.name); 
+  };
+}
+
+let person = new Person();
+let sayNameCopy = person.sayName;
+sayNameCopy();// 第一次输出 
+答案是window和undefined。因为，这个时候符合默认绑定的规则。跟例5一样  赋值会丢失进而指向window
+
+function Person() {
+  this.name = "Smiley";
+  this.sayName = ()=> {
+    console.log(this);
+    console.log(this.name); 
+  };
+}
+
+let person = new Person();
+person.sayName.call({name: "Nicolas"});
+把sayName改为箭头函数。结果则变成了Person和"Smiley"。这是因为箭头函数并没有自己的this，被定义在哪里，this就指向谁，且优先级比显式调用高，因此，this仍指向Person。
+
+例4：
+let obj = {
+    tmp:'Yes!',
+    testLog:function(){
+        console.log(this.tmp);
+    }
+};
+obj.testLog();
+输出yes
+
+例5
+let obj = {
+    tmp:'Yes!',
+    testLog:function(){
+        console.log(this.tmp);
+    }
+ 
+};
+let tmpLog = obj.testLog;
+tmpLog();
+
+//undefined
+注意到现在没有直接调用obj对象中的testLog方法，而是使用了一个中间变量tmpLog过渡，当使用括号()调用该方法时，方法中的this丢失了指向，会指向window，进而window.tmp未定义就是undefined;

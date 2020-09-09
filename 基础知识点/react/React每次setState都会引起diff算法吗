@@ -1,0 +1,13 @@
+
+调用render时，DOM一定会更新吗，为什么?
+不一定更新
+React采用diff算法将virtual DOM和真实DOM进行比较，找出需要更新的最小的部分，这时Real DOM才可能发生修改，所以每次state的更改都会使得render函数被调用，但是页面DOM不一定发生修改.
+
+
+setState 调用后，组件的 render 方法也会自动调用，这就是为什么你能在页面看到新数据。但是无论你 setState 修改的是什么，哪怕是页面里没有的一个数据，render 都会被触发，并且父组件渲染中会嵌套渲染自组件。
+
+
+React的diff算法是在哪里进行计算的？
+diff算法是在render里面进行计算的。
+shouldComponentUpdate 方法返回一个布尔值。false 表示不要调用 render 方法；true 表示需要调用 render 方法计算出新的虚拟 DOM。
+我们可以使用shouldComponentUpdate()返回false来中断diff运算

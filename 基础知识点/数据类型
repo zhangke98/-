@@ -1,0 +1,47 @@
+值类型在栈里 引用类型在堆了 堆网上增长 开口在上  栈往下增长 开口在下  但都是后进先出
+值类型复制的是变量的值
+引用类型复制的是变量的内存地址
+为什么要这样？
+性能的问题 引用类型可能非常的复杂 直接复制会浪费很多的性能
+
+null和undefined区别
+null表示一个值被定义了，定义为"空值" 以后可能会有值 对应数字 0
+undefined 表示未定义 对象NaN 不存在
+null==undefiend 正确
+null===undefined错误
+
+JS基本数据类型
+undefined、Null、Number、String、Symbol、Boolean
+JS复杂数据类型
+Obeject
+typeof 能返回的去掉null加上function 也是7种
+typeof console是"object"，typeof console.log是"function"
+
+Object 中包含了哪几种类型？
+其中包含了Data、function、Array[əˈreɪ]等。这三种是常规用的。
+注意：null高程中明确说了是基本数据类型，虽然用 typeof返回的是Object ,
+但null instanceof Object false
+
+特殊的引用类型函数，但不用于存储数据，所以没有拷贝复制函数这一说
+
+强制类型转换
+parseInt() 函数可解析一个字符串，并返回一个整数
+parseFloat() 函数可解析一个字符串,并返回一个浮点数
+toString
+
+隐式类型转换
+== +拼接字符串 if（判断条件）{}；判断条件转换--->Boolean类型
+-运算符变number
+
+typeof不能判断数组，一下方式判断数组
+1.A instanceof Array true / false
+2.Array.isArray(A)  ES5
+3.Object.prototype.toString.call(arr)==='[object Array]'  兼容性更好的方案
+toString.call(/[0-9]/)   "[object RegExp]"
+  // object小写 带中括号
+注意 typeof无法判断 
+4.arr.constructor不严谨，不建议使用，因为constructor可以任意改变，都可以让变量拥有constructor属性
+
+
+
+注：.person1,person2以及Person.prototype都有construtor属性指向构造函数Person

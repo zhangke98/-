@@ -1,0 +1,59 @@
+常用api
+
+navigator.userAgent 查看浏览器类型
+screen.width/height 屏幕的宽高 不随窗口的改变而改变
+screen一般其实不用，可能存在兼容性问题，如果是响应式设置，screen.width获取视口的宽度，如果是PC端，获取的实际是横向分辨率
+
+可视窗口的宽高：
+情况1:包括滚动条的宽度高度
+包含有滚动条宽度高度
+
+滚动条的大小,有的时候是16,有的时候是17
+
+结果只是数值
+window.innerHeight   高度
+window.innerWidth    宽度
+
+情况2:不包括滚动条宽度高度
+document.documentElement.clientHeight   高度
+document.documentElement.clientWidth    宽度
+
+如歌分解url的各个部分？用location对象
+location对象：
+hash	设置或返回从井号 (#) 开始的 URL（锚）。
+host	设置或返回主机名和当前 URL 的端口号。
+hostname	设置或返回当前 URL 的主机名。
+href	设置或返回完整的 URL。
+pathname	设置或返回当前 URL 的路径部分。
+port	设置或返回当前 URL 的端口号。
+protocol	设置或返回当前 URL 的协议。
+search	设置或返回从问号 (?) 开始的 URL（查询部分）。 包括问号一起返回
+获取当前url的参数？location.search
+
+history对象：
+back()	    加载 history 列表中的前一个 URL。
+forward()	加载 history 列表中的下一个 URL。
+go()	    加载 history 列表中的某个具体页面。
+下面一行代码执行的操作与单击两次后退按钮执行的操作一样：
+
+history.go(-2)
+
+
+
+ clientWidth = width+左右padding
+ clientHeigh = height + 上下padding 
+ clientTop = boder.top(上边框的宽度)
+ clientLeft = boder.left(左边框的宽度)
+
+
+ offsetWidth = width + 左右padding + 左右boder
+ offsetHeith = height + 上下padding + 上下boder
+ offsetLeft：当前元素 左边框 外边缘 到 最近的已定位父级（offsetParent）左边框内边缘的 距离。如果父级都没有定位，则是到body左边的距离
+ offsetTop：当前元素 上边框 外边缘 到 最近的已定位父级（offsetParent） 上边框内边缘的 距离。如果父级都没有定位，则是到body顶部的距离
+
+
+
+scrollWidth：获取指定标签内容层的真实宽度（可视区域宽度+被隐藏区域宽度
+scrollHeight：获取指定标签内容层的真实高度（可视区域高度+被隐藏区域高度）
+scrollTop :内容层顶部 到 可视区域顶部的距离
+scrollLeft:内容层左端 到 可视区域左端的距离

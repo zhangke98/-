@@ -1,0 +1,47 @@
+AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML)
+AJAX 不是编程语言，而是一种方法。
+传统的网页（不使用 AJAX）如果需要更新内容，必需重载整个网页面。
+AJAX 
+
+readyState:存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
+0: 请求未初始化,还没有调用send方法
+1: 服务器连接已建立，已调用send方法，正在发送请求
+2: 请求已接收  send执行完成
+3: 请求处理中
+4: 请求已完成，且响应已就绪
+
+xhr.readyState会从0到4变化
+
+0 —— （未初始化）还没有调用send()方法
+
+1 —— （载入）已调用send()方法，服务器连接已建立，正在发送请求
+
+2 —— （载入完成） send()方法执行完成，已经接收到全部响应内容
+
+3 —— （交互）正在解析响应内容
+
+4 —— （完成）响应内容解析完成，可以在客户端调用
+
+
+考虑兼容
+var xhr;
+if (window.XMLHttpRequest)
+{
+    //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+    xhr=new XMLHttpRequest();
+}
+else
+{
+    // IE6, IE5 浏览器执行代码
+    xhr=new ActiveXObject("Microsoft.XMLHTTP");
+}
+
+
+
+get请求的send方法可以传null也可以不传
+
+
+form表单的post请求和ajax的post的请求有哪些区别
+提交方式没有区别，都是标准http协议中的POST方法。
+要说区别，就是form表单在post的同时，会把整个页面也跳转到目标地址上；而ajax只是异步（或者可以设置同步）的将数据提交到目标地址，然后接受一个返回值，页面依旧还是之前的页面。
+

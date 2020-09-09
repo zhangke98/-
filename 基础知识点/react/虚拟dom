@@ -1,0 +1,12 @@
+什么是虚拟dom？
+本质是JS对象模拟的DOM结构      将DOM变化的对比放在JS层来做。换而言之，vdom就是JS对象
+render方法将其渲染成真实的dom节点
+
+
+
+为什么要用虚拟dom？
+将DOM的比对操作放在JS层，计算出Virtual DOM中真正变化的部分，并只针对该部分进行操作，而不是重新渲染整个页面，在性能上有一定的提升。
+
+
+
+Virtual DOM 的 diff才是整个Virtual DOM 中最难理解也最核心的部分，diff的目的就是比较新旧Virtual DOM Tree找出差异并更新.

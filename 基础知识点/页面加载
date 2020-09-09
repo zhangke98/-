@@ -1,0 +1,14 @@
+一般来说，页面资源分为3类
+
+html代码
+javascript、css
+媒体文件，如图片、视频等
+
+
+ 页面加载过程
+（1）根据HTML代码生成DOM树
+（2）根据CSS代码生成CSSOM（CSS对象模型）
+（3）将DOM树和CSSOM整合形成Render Tree（渲染树）
+（4）根据Render Tree渲染页面
+（5）遇到<script>则暂停渲染（因为JS可能会修改DOM结构），优先加载并执行JS代码，完成再继续
+（6）直至把Render Tree渲染完成

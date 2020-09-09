@@ -1,0 +1,25 @@
+git服务端常见的有github  coding.net  Gitee码云
+常用 Git 命令
+git init 初始化一个 git 环境
+git add . 新建的文件,修改的文件 全部囊括起来  提交到暂存区
+git checkout 修改错了,还原回去   .是全部  也可以具体文件名
+git commit -m "注释" 把修改完的文件先提到本地的仓库
+git push origin master 提交到远程的仓库
+git pull origin master 拉取最新的代码 取回远程仓库的变化，并与本地分支合并
+git branch 分支;多人开发会到分支(创建一个自己的地盘,不和别人共享)
+git checkout -b xxx/ 切换分支到 xxx
+git checkout master 切换分支到 master
+git status 查看状态 ,查看哪些改动了
+git diff 查看文件修改前后的不同处
+git cone 将存储库上的代码 clone 到本地
+git merge [branch] 合并指定分支到当前分支
+cat 查看文件内容
+
+不小心在master上改了 忘记切换分支
+git  stash  把改的东西搁到一边 
+然后切换分支
+然后git stash pop  改动的就会在分支上出现
+
+git fetch是将远程主机的最新内容拉到本地，用户在检查了以后决定是否合并到工作本机分支中。
+一般是负责人要合并其他人的代码之前 
+而 git pull 则是将远程主机的最新内容拉下来后直接合并  即：git pull = git fetch + git merge，这样可能会产生冲突，需要手动解决

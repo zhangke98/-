@@ -1,0 +1,57 @@
+盒子相对于body水平垂直居中  知道了这个害怕不会单独的水平和垂直
+margin:auto是水平居中
+
+定位1：子绝父相
+top: 50%;
+left: 50%;
+//这个时候盒子的左上角在中间
+margin-top: -50px; /*高度的一半*/
+margin-left: -50px; /宽度的一半*/
+如果是这样
+top: 50%;
+left: 50%;
+top: -50px; 
+left: -50px;
+下面的值会覆盖上面的
+
+//缺点:需要提前知道元素的宽高
+
+定位2：CSS3.0的兴起，使这个问题有了更好的解决方法，就是使用 transform 代替 margin 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate( -50%, -50%);
+  
+
+定位3：上下左右均为 0 位置绝对定位
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+margin: auto;
+只留上下就是垂直居中
+缺点：盒子必须要定义了宽高，只是不需要考虑了
+
+4：css3弹性布局
+flex定位
+父盒子： display: flex;
+        align-items: center;/*定义body的元素垂直居中*/
+        justify-content: center;/*定义body的元素水平居中* 联想水平称，公平
+
+5:table布局
+ .parent{
+         width: 300px;
+         height: 300px;
+         //固定宽高
+         background: orange;
+         display: table-cell;
+         vertical-align: middle;
+         text-align:center;
+     }
+.son{
+         display: inline-block;
+         background-color: yellow;
+         
+     }
+
